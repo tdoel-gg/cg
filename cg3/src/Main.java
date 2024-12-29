@@ -1,13 +1,6 @@
-import cs.vsu.ru.k2.g42.myshkevich_a_n.Math.Vector3f;
+
 import cs.vsu.ru.k2.g42.myshkevich_a_n.model.Model;
-import cs.vsu.ru.k2.g42.myshkevich_a_n.model.Polygon;
 import cs.vsu.ru.k2.g42.myshkevich_a_n.objreader.ObjReader;
-import cs.vsu.ru.k2.g42.myshkevich_a_n.objwriter.ObjWriter;
-
-
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class Main {
     public static void main(String[] args) {
@@ -59,13 +52,43 @@ public class Main {
                 "f 5/13/4 6/14/4 2/15/4 1/16/4\n" +
                 "f 3/17/5 7/18/5 5/19/5 1/20/5\n" +
                 "f 8/21/6 4/22/6 2/23/6 6/24/6\n");
+
         AffineTransformations transformations = new AffineTransformations();
 
+        System.out.println("Translate:");
         for (int i = 0; i < model.vertices.size(); i++) {
-            transformations.translate(model.vertices.get(i).x, model.vertices.get(i).y, model.vertices.get(i).z, 3);
+            transformations.translate(model.vertices.get(i),2,2,2 );
+            System.out.println(model.vertices.get(i).x + " " + model.vertices.get(i).y + " " + model.vertices.get(i).z);
         }
-        String file = "test1.obj";
-        ObjWriter writer = new ObjWriter();
-        writer.write(model, file);
+        System.out.println();
+
+        System.out.println("Rotate X:");
+        for (int i = 0; i < model.vertices.size(); i++) {
+            transformations.rotateX(model.vertices.get(i), 360);
+            System.out.println(model.vertices.get(i).x + " " + model.vertices.get(i).y + " " + model.vertices.get(i).z);
+        }
+        System.out.println();
+
+
+        System.out.println("Rotate Y:");
+        for (int i = 0; i < model.vertices.size(); i++) {
+            transformations.rotateY(model.vertices.get(i), 360);
+            System.out.println(model.vertices.get(i).x + " " + model.vertices.get(i).y + " " + model.vertices.get(i).z);
+        }
+        System.out.println();
+
+        System.out.println("Rotate Z:");
+        for (int i = 0; i < model.vertices.size(); i++) {
+            transformations.rotateZ(model.vertices.get(i), 360);
+            System.out.println(model.vertices.get(i).x + " " + model.vertices.get(i).y + " " + model.vertices.get(i).z);
+        }
+        System.out.println();
+
+        System.out.println("Scale:");
+        for (int i = 0; i < model.vertices.size(); i++) {
+            transformations.scale(model.vertices.get(i), 2, 2, 2);
+            System.out.println(model.vertices.get(i).x + " " + model.vertices.get(i).y + " " + model.vertices.get(i).z);
+        }
+
     }
 }
